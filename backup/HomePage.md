@@ -1,5 +1,8 @@
 收录一些网站，临时目录会不定时删除
 # 临时
+- [迷宫](https://jrsinclair.com/articles/2025/joy-of-immutable-data-recursion-pure-functions-javascript-mazes/)
+-  [airi](https://github.com/moeru-ai/airi)
+- [Ride](https://riceyourride.com/) 
 - [Gmsh](https://www.fileeagle.com/software/3382/Gmsh)
 - [AsFem](https://github.com/MatMechLab/AsFem)
 - [moose](https://mooseframework.inl.gov/index.html)
@@ -19,7 +22,6 @@
 - [github 下载加速](https://github.akams.cn/)
 - [tuna mirror](https://mirrors.tuna.tsinghua.edu.cn/)
 - [gradle mirror](https://mirrors.cloud.tencent.com/gradle/)
-- [jetbra ide破解](https://3.jetbra.in/)
 - [ittun](https://www.ittun.com/)
 - [emulsion](https://arturkovacs.github.io/emulsion-website/)
 - [Notepad3](https://github.com/rizonesoft/Notepad3)

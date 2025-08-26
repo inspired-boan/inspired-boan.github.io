@@ -1,6 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Mon, 20 Jan 2025 14:07:01 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>HomePage</title><link>https://inspired-boan.github.io/post/HomePage.html</link><description>收录一些网站，临时目录会不定时删除
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Tue, 26 Aug 2025 01:55:13 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>HomePage</title><link>https://inspired-boan.github.io/post/HomePage.html</link><description>收录一些网站，临时目录会不定时删除
 # 临时
+- [迷宫](https://jrsinclair.com/articles/2025/joy-of-immutable-data-recursion-pure-functions-javascript-mazes/)
+-  [airi](https://github.com/moeru-ai/airi)
+- [Ride](https://riceyourride.com/) 
 - [Gmsh](https://www.fileeagle.com/software/3382/Gmsh)
 - [AsFem](https://github.com/MatMechLab/AsFem)
 - [moose](https://mooseframework.inl.gov/index.html)
@@ -20,7 +23,6 @@
 - [github 下载加速](https://github.akams.cn/)
 - [tuna mirror](https://mirrors.tuna.tsinghua.edu.cn/)
 - [gradle mirror](https://mirrors.cloud.tencent.com/gradle/)
-- [jetbra ide破解](https://3.jetbra.in/)
 - [ittun](https://www.ittun.com/)
 - [emulsion](https://arturkovacs.github.io/emulsion-website/)
 - [Notepad3](https://github.com/rizonesoft/Notepad3)
