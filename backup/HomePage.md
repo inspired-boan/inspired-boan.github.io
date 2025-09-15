@@ -1,5 +1,9 @@
 收录一些网站，临时目录会不定时删除
 # 临时
+- [index-tts](https://github.com/index-tts/index-tts)
+- [tiny-llm](https://skyzh.github.io/tiny-llm/)
+- [makerworld](https://makerworld.com.cn/zh/3d-models)
+- [mechanical](https://mechanical-library.org/gear-reduction)
 - [迷宫](https://jrsinclair.com/articles/2025/joy-of-immutable-data-recursion-pure-functions-javascript-mazes/)
 -  [airi](https://github.com/moeru-ai/airi)
 - [Ride](https://riceyourride.com/) 
