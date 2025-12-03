@@ -13,6 +13,7 @@
 - [Gmsh](https://www.fileeagle.com/software/3382/Gmsh)
 - [AsFem](https://github.com/MatMechLab/AsFem)
 - [moose](https://mooseframework.inl.gov/index.html)
+- [像素游戏资源参考](https://danieldiggle.itch.io/sunnyside)
 # 代码
 - [dear imgui](https://github.com/ocornut/imgui/wiki)
 - [dear imgui node editor](https://github.com/thedmd/imgui-node-editor)
