@@ -103,7 +103,7 @@
 - [mc](https://www.mcmod.cn/)
 - [矮人要塞](https://dfzh.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
 - [围棋](https://www.101weiqi.com/)
-- [游戏下载](https://mxdjzj.com/)
+- [游戏下载](https://www.mxdj.top/)
 - [android 游戏下载](https://platinmods.com/)
 - [retropie 将gbc等类型游戏部署到Linux的网站](https://retropie.org.uk/)
 - [roms](https://www.romsgames.net/roms/)

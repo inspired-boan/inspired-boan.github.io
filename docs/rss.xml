@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Wed, 03 Dec 2025 01:42:31 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>SDL2多行文字显示</title><link>https://inspired-boan.github.io/post/SDL2-duo-xing-wen-zi-xian-shi.html</link><description>思路如下：
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Thu, 08 Jan 2026 05:35:44 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>SDL2多行文字显示</title><link>https://inspired-boan.github.io/post/SDL2-duo-xing-wen-zi-xian-shi.html</link><description>思路如下：
 1. 按行分割多行字符串
 2. 通过总体Surface将所有行Surface合并
 ```C++
@@ -163,7 +163,7 @@ void Simg::renderText(const std::string &amp;str, SDL_Rect rect, SDL_Color color
 - [mc](https://www.mcmod.cn/)
 - [矮人要塞](https://dfzh.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
 - [围棋](https://www.101weiqi.com/)
-- [游戏下载](https://mxdjzj.com/)
+- [游戏下载](https://www.mxdj.top/)
 - [android 游戏下载](https://platinmods.com/)
 - [retropie 将gbc等类型游戏部署到Linux的网站](https://retropie.org.uk/)
 - [roms](https://www.romsgames.net/roms/)
