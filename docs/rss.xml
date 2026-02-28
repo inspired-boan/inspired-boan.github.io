@@ -1,5 +1,25 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Fri, 16 Jan 2026 02:47:35 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>2025玩游戏总结</title><link>https://inspired-boan.github.io/post/2025-wan-you-xi-zong-jie.html</link><description># 2025玩游戏总结
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Sat, 28 Feb 2026 07:09:49 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>JsonCpp的Object对象按Key的数值类型顺序输出</title><link>https://inspired-boan.github.io/post/JsonCpp-de-Object-dui-xiang-an-Key-de-shu-zhi-lei-xing-shun-xu-shu-chu.html</link><description>使用JsonCpp的Object对象，若Key为数值类型且想要按照Key数值类型顺序输出，则需要修改部分代码，如下：
+```C++
+//找到jsoncpp.cpp的getMemberNames函数，在return members之前添加如下代码
+    std::sort(members.begin(), members.end(),
+              [](const std::string &amp;a, const std::string &amp;b)
+              {
+                  auto isIntViaStringStream = [](const std::string &amp;str)
+                  {
+                      std::istringstream iss(str);
+                      int val;
+                      char leftover;
+                      // 尝试读取 int，并检查是否有多余字符（非空格）
+                      return (iss &gt;&gt; val) &amp;&amp; !(iss &gt;&gt; leftover);
+                  };
+                  if (isIntViaStringStream(a) &amp;&amp; isIntViaStringStream(b))
+                      return std::stoi(a) &lt; std::stoi(b);
+                  else
+                      return a &lt; b;
+              });
+```
+。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/JsonCpp-de-Object-dui-xiang-an-Key-de-shu-zhi-lei-xing-shun-xu-shu-chu.html</guid><pubDate>Sat, 28 Feb 2026 07:09:22 +0000</pubDate></item><item><title>2025玩游戏总结</title><link>https://inspired-boan.github.io/post/2025-wan-you-xi-zong-jie.html</link><description># 2025玩游戏总结
 **今年玩了不少游戏，对于每个游戏都用一句话总结一下。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/2025-wan-you-xi-zong-jie.html</guid><pubDate>Fri, 16 Jan 2026 02:47:09 +0000</pubDate></item><item><title>动态类型信息DTI实现</title><link>https://inspired-boan.github.io/post/dong-tai-lei-xing-xin-xi-DTI-shi-xian.html</link><description>动态类型信息(Dynamic Type Info)，下称DTI。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/dong-tai-lei-xing-xin-xi-DTI-shi-xian.html</guid><pubDate>Thu, 08 Jan 2026 07:55:31 +0000</pubDate></item><item><title>SDL2多行文字显示</title><link>https://inspired-boan.github.io/post/SDL2-duo-xing-wen-zi-xian-shi.html</link><description>思路如下：
 1. 按行分割多行字符串
 2. 通过总体Surface将所有行Surface合并
