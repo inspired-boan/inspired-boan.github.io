@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Sat, 28 Feb 2026 07:09:49 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>JsonCpp的Object对象按Key的数值类型顺序输出</title><link>https://inspired-boan.github.io/post/JsonCpp-de-Object-dui-xiang-an-Key-de-shu-zhi-lei-xing-shun-xu-shu-chu.html</link><description>使用JsonCpp的Object对象，若Key为数值类型且想要按照Key数值类型顺序输出，则需要修改部分代码，如下：
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Thu, 26 Mar 2026 05:43:09 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>JsonCpp的Object对象按Key的数值类型顺序输出</title><link>https://inspired-boan.github.io/post/JsonCpp-de-Object-dui-xiang-an-Key-de-shu-zhi-lei-xing-shun-xu-shu-chu.html</link><description>使用JsonCpp的Object对象，若Key为数值类型且想要按照Key数值类型顺序输出，则需要修改部分代码，如下：
 ```C++
 //找到jsoncpp.cpp的getMemberNames函数，在return members之前添加如下代码
     std::sort(members.begin(), members.end(),
@@ -81,9 +81,9 @@ void Simg::renderText(const std::string &amp;str, SDL_Rect rect, SDL_Color color
 }
 ```。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/SDL2-duo-xing-wen-zi-xian-shi.html</guid><pubDate>Tue, 26 Aug 2025 02:02:50 +0000</pubDate></item><item><title>HomePage</title><link>https://inspired-boan.github.io/post/HomePage.html</link><description>收录一些网站，临时目录会不定时删除
 # 临时
-- [bgg](https://boardgamegeek.com/forum/974620/bgg/design-contests)
+- [febio](https://febio.org/)
+- [vm install archlinux hyprland](https://blog.kamisamak.com/1399/)
 - [todolist](https://github.com/hamsterbase/tasks)
-- [戴森球计划](https://factoriolab.github.io/dsp/list?o=magnetic-coil*180&amp;o=circuit-board*180&amp;v=11)
 - [index-tts](https://github.com/index-tts/index-tts)
 - [tiny-llm](https://skyzh.github.io/tiny-llm/)
 - [makerworld](https://makerworld.com.cn/zh/3d-models)
@@ -190,7 +190,11 @@ void Simg::renderText(const std::string &amp;str, SDL_Rect rect, SDL_Color color
 - [roms](https://www.romsgames.net/roms/)
 - [freegame](http://dan-ball.jp/en/)
 - [3ds 游戏下载](https://www.paopaoche.net/zhuji/3DS/)
-
+- [戴森球计划辅助](https://factoriolab.github.io/dsp/list?o=magnetic-coil*180&amp;o=circuit-board*180&amp;v=11)
+# 桌游
+- [bgg](https://boardgamegeek.com/forum/974620/bgg/design-contests)
+- [arkhamhorror](https://arkhamhorror.app/#/)
+- [arkhamdb](https://arkhamdb.com/)
 # 游戏开发
 - [sdl game learn](https://www.parallelrealities.co.uk/tutorials/#editor)
 

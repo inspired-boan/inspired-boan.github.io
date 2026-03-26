@@ -1,8 +1,8 @@
 收录一些网站，临时目录会不定时删除
 # 临时
-- [bgg](https://boardgamegeek.com/forum/974620/bgg/design-contests)
+- [febio](https://febio.org/)
+- [vm install archlinux hyprland](https://blog.kamisamak.com/1399/)
 - [todolist](https://github.com/hamsterbase/tasks)
-- [戴森球计划](https://factoriolab.github.io/dsp/list?o=magnetic-coil*180&o=circuit-board*180&v=11)
 - [index-tts](https://github.com/index-tts/index-tts)
 - [tiny-llm](https://skyzh.github.io/tiny-llm/)
 - [makerworld](https://makerworld.com.cn/zh/3d-models)
@@ -109,7 +109,11 @@
 - [roms](https://www.romsgames.net/roms/)
 - [freegame](http://dan-ball.jp/en/)
 - [3ds 游戏下载](https://www.paopaoche.net/zhuji/3DS/)
-
+- [戴森球计划辅助](https://factoriolab.github.io/dsp/list?o=magnetic-coil*180&o=circuit-board*180&v=11)
+# 桌游
+- [bgg](https://boardgamegeek.com/forum/974620/bgg/design-contests)
+- [arkhamhorror](https://arkhamhorror.app/#/)
+- [arkhamdb](https://arkhamdb.com/)
 # 游戏开发
 - [sdl game learn](https://www.parallelrealities.co.uk/tutorials/#editor)
 
