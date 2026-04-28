@@ -1,2 +1,232 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Mon, 27 Apr 2026 17:21:44 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Inspired-boan Home</title><link>https://inspired-boan.github.io</link><description>假如岁月足够长，那不做些有趣之事，何以遣无涯人生。</description><copyright>Inspired-boan Home</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://inspired-boan.github.io</link></image><lastBuildDate>Tue, 28 Apr 2026 17:46:24 +0000</lastBuildDate><managingEditor>Inspired-boan Home</managingEditor><ttl>60</ttl><webMaster>Inspired-boan Home</webMaster><item><title>JsonCpp的Object对象按Key的数值类型顺序输出</title><link>https://inspired-boan.github.io/post/JsonCpp-de-Object-dui-xiang-an-Key-de-shu-zhi-lei-xing-shun-xu-shu-chu.html</link><description>使用JsonCpp的Object对象，若Key为数值类型且想要按照Key数值类型顺序输出，则需要修改部分代码，如下：
+```C++
+//找到jsoncpp.cpp的getMemberNames函数，在return members之前添加如下代码
+    std::sort(members.begin(), members.end(),
+              [](const std::string &amp;a, const std::string &amp;b)
+              {
+                  auto isIntViaStringStream = [](const std::string &amp;str)
+                  {
+                      std::istringstream iss(str);
+                      int val;
+                      char leftover;
+                      // 尝试读取 int，并检查是否有多余字符（非空格）
+                      return (iss &gt;&gt; val) &amp;&amp; !(iss &gt;&gt; leftover);
+                  };
+                  if (isIntViaStringStream(a) &amp;&amp; isIntViaStringStream(b))
+                      return std::stoi(a) &lt; std::stoi(b);
+                  else
+                      return a &lt; b;
+              });
+```
+。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/JsonCpp-de-Object-dui-xiang-an-Key-de-shu-zhi-lei-xing-shun-xu-shu-chu.html</guid><pubDate>Sat, 28 Feb 2026 07:09:22 +0000</pubDate></item><item><title>2025玩游戏总结</title><link>https://inspired-boan.github.io/post/2025-wan-you-xi-zong-jie.html</link><description># 2025玩游戏总结
+**今年玩了不少游戏，对于每个游戏都用一句话总结一下。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/2025-wan-you-xi-zong-jie.html</guid><pubDate>Fri, 16 Jan 2026 02:47:09 +0000</pubDate></item><item><title>动态类型信息DTI实现</title><link>https://inspired-boan.github.io/post/dong-tai-lei-xing-xin-xi-DTI-shi-xian.html</link><description>动态类型信息(Dynamic Type Info)，下称DTI。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/dong-tai-lei-xing-xin-xi-DTI-shi-xian.html</guid><pubDate>Thu, 08 Jan 2026 07:55:31 +0000</pubDate></item><item><title>SDL2多行文字显示</title><link>https://inspired-boan.github.io/post/SDL2-duo-xing-wen-zi-xian-shi.html</link><description>思路如下：
+1. 按行分割多行字符串
+2. 通过总体Surface将所有行Surface合并
+```C++
+void Simg::renderText(const std::string &amp;str, SDL_Rect rect, SDL_Color color)
+{
+    // 分割str 按\n分割
+    auto lines = splitLines(str);
+    //标准行间距
+    const int lineSkip = TTF_FontLineSkip(font);
+    // 计算总高度
+    int totalHeight = 0;
+    // 计算最大宽度
+    int maxWidth = 0;
+    // 所有行surface
+    std::vector&lt;SDL_Surface*&gt; lineSurfaces;
+    for (const auto &amp;str : lines)
+    {
+        SDL_Surface *surface = TTF_RenderUTF8_Blended(font, str.c_str(), color);
+        if (surface == nullptr) continue;
+        lineSurfaces.push_back(surface);
+        surface-&gt;w &gt; maxWidth ? maxWidth = surface-&gt;w : maxWidth;
+        totalHeight += lineSkip;
+    }
+    // 创建目标表面（带透明度）
+    SDL_Surface* final = SDL_CreateRGBSurfaceWithFormat(
+        0, maxWidth, totalHeight, 32, SDL_PIXELFORMAT_RGBA32);
+    if (final == nullptr)
+    {
+        for (auto s : lineSurfaces) SDL_FreeSurface(s);
+        return;
+    }
+    // 设置透明背景
+    SDL_FillRect(final, NULL, SDL_MapRGBA(final-&gt;format, 0, 0, 0, 0));
+
+    // 逐行绘制文本
+    int yPos = 0;
+    for (auto surf : lineSurfaces) {
+        SDL_Rect dest = {0, yPos, surf-&gt;w, surf-&gt;h};
+        SDL_BlitSurface(surf, NULL, final, &amp;dest);
+        SDL_FreeSurface(surf); // 释放临时表面
+        yPos += lineSkip;      // 移动到下一行位置
+    }
+    lineSurfaces.clear();
+
+    SDL_Rect bgDst = {rect.x, rect.y, maxWidth, totalHeight};
+    // 文字背景
+    SDL_Color tcolor;
+    SDL_GetRenderDrawColor(renderer, &amp;tcolor.r, &amp;tcolor.g, &amp;tcolor.b, &amp;tcolor.a);
+    SDL_SetRenderDrawColor(renderer, (Uint8)(rgba[0] * 255), (Uint8)(rgba[1] * 255), (Uint8)(rgba[2] * 255), (Uint8)(rgba[3] * 255));
+    SDL_RenderFillRect(renderer, &amp;bgDst);
+    SDL_SetRenderDrawColor(renderer, tcolor.r, tcolor.g, tcolor.b, tcolor.a);
+
+    // Texture
+    SDL_Texture *text_texture = SDL_CreateTextureFromSurface(renderer, final);
+    SDL_FreeSurface(final);
+    SDL_RenderCopyEx(renderer, text_texture, NULL, &amp;bgDst, 0, NULL, SDL_RendererFlip::SDL_FLIP_NONE);
+    SDL_DestroyTexture(text_texture);
+}
+```。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/SDL2-duo-xing-wen-zi-xian-shi.html</guid><pubDate>Tue, 26 Aug 2025 02:02:50 +0000</pubDate></item><item><title>HomePage</title><link>https://inspired-boan.github.io/post/HomePage.html</link><description>收录一些网站，临时目录会不定时删除
+# 临时
+- [febio](https://febio.org/)
+- [vm install archlinux hyprland](https://blog.kamisamak.com/1399/)
+- [todolist](https://github.com/hamsterbase/tasks)
+- [index-tts](https://github.com/index-tts/index-tts)
+- [tiny-llm](https://skyzh.github.io/tiny-llm/)
+- [makerworld](https://makerworld.com.cn/zh/3d-models)
+- [mechanical](https://mechanical-library.org/gear-reduction)
+- [迷宫](https://jrsinclair.com/articles/2025/joy-of-immutable-data-recursion-pure-functions-javascript-mazes/)
+-  [airi](https://github.com/moeru-ai/airi)
+- [Ride](https://riceyourride.com/) 
+- [Gmsh](https://www.fileeagle.com/software/3382/Gmsh)
+- [AsFem](https://github.com/MatMechLab/AsFem)
+- [moose](https://mooseframework.inl.gov/index.html)
+- [像素游戏资源参考](https://danieldiggle.itch.io/sunnyside)
+# 代码
+- [dear imgui](https://github.com/ocornut/imgui/wiki)
+- [dear imgui node editor](https://github.com/thedmd/imgui-node-editor)
+- [sdl](https://www.libsdl.org/)
+- [sdl wiki](https://wiki.libsdl.org/SDL2/CategoryAPI)
+- [learn sdl](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/index2.php)
+- [fix your timestep](https://gafferongames.com/post/fix_your_timestep/)
+- [sdl-gpu](https://github.com/grimfang4/sdl-gpu)
+- [6502汇编](https://codediy.github.io/nes-zh/easy6502/index.html)
+- [PythonQt](https://github.com/MeVisLab/pythonqt)
+- [schemioweb画图工具](https://github.com/ishubin/schemio?tab=readme-ov-file)
+
+## 编写代码辅助工具/网站
+- [github 下载加速](https://github.akams.cn/)
+- [tuna mirror](https://mirrors.tuna.tsinghua.edu.cn/)
+- [gradle mirror](https://mirrors.cloud.tencent.com/gradle/)
+- [ittun](https://www.ittun.com/)
+- [emulsion](https://arturkovacs.github.io/emulsion-website/)
+- [Notepad3](https://github.com/rizonesoft/Notepad3)
+- [FL Studio](https://www.image-line.com/fl-studio-download/)
+
+## 机器学习
+- [kaggle 机器学习入门](https://www.kaggle.com)
+- [scikit-learn api](https://scikit-learn.org/stable/api/index.html)
+- [开源机器学习项目](https://riboseyim.github.io/2018/02/09/Machine-Learning-Projects/)
+- [机器学习相关1](https://course.fast.ai/)
+- [机器学习相关2](https://ataiva.com/a-deep-dive-into-machine-learning-algorithms/)
+
+## Linux
+- [kali](https://www.kali.org/#kali-highlights)
+- [archlinux](https://wiki.archlinux.org/)
+- [unixporn](https://unixporn.github.io/)
+- [archcraft](https://archcraft.io/)
+- [arch hyprland](https://stormckey.github.io/blog/arch-linux--hyprland-%E5%AE%89%E8%A3%85%E5%85%A8%E6%B5%81%E7%A8%8B/)
+- [gnu](https://www.gnu.org/)
+
+## 算法相关
+- [algo 初学](https://www.hello-algo.com/)
+- [algo 进阶](https://cp-algorithms.com/)
+- [algo 高级](https://the-algorithms.com/zh_Hans)
+
+## 数学相关
+- [math 线性代数 初学](https://textbooks.math.gatech.edu/ila/backmatter.html)
+- [math 线性代数 初学 两本差不多](https://gamemath.com/book/intro.html)
+
+## 三维相关
+- [d3d教程](https://learn.microsoft.com/zh-cn/windows/win32/getting-started-with-direct3d?redirectedfrom=MSDN)
+- [opengl](https://learnopengl-cn.github.io/)
+
+## 模型等参考
+- [model 模型参考](https://www.mixamo.com)
+- [opengl texture model ...](https://polyhaven.com/)
+- [3d动物模型](https://sketchfab.com/ffishAsia-and-floraZia)
+
+## 硬件相关
+- [MQTT](https://www.emqx.com/zh/blog/the-easiest-guide-to-getting-started-with-mqtt)
+- [esphome](https://esphome.io/)
+- [qcad](https://www.qcad.org/en/)
+- [freeCAD](https://www.freecad.org/?lang=zh_CN)
+- [platformio](https://docs.platformio.org/en/latest/)
+
+## Blog
+- [100R](https://100r.co/site/home.html)
+- [grimgrains](http://grimgrains.com/site/home.html)
+- [trickster](https://www.trickster.dev/)
+
+# 有趣网站
+- [simplifier](https://simplifier.neocities.org/)
+- [apple](http://www.applemuseum.dk/apple_museum/index.html)
+- [badar硬件开发工作台](https://badar.tech/2023/04/30/electronics-lab-bench-setup-guide/)
+- [wiby](http://www.wiby.org/)
+- [sync keys](https://www.synckeys.com/)
+
+# 图片
+- [花瓣](https://huaban.com/discovery)
+- [ai girl](https://make.girls.moe/#/)
+- [漫画 次元狗](https://www.acgndog.com/category/rec-comic)
+- [ysdaima颜色代码表](https://www.ysdaima.com/tools/)
+- [pinterest](https://www.pinterest.com/ideas/)
+## 图标
+- [animation icon](https://useanimations.com/#explore)
+- [igoutu](https://igoutu.cn/icons)
+- [阿里巴巴矢量图标](https://www.iconfont.cn/search/index?searchType=icon&amp;q=%E7%AC%94%E8%AE%B0&amp;page=1&amp;fromCollection=1&amp;fills=&amp;tag=simple)
+- [feathericons](https://feathericons.com/)
+  
+# 游戏
+- [mc](https://www.mcmod.cn/)
+- [矮人要塞](https://dfzh.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5)
+- [围棋](https://www.101weiqi.com/)
+- [游戏下载](https://www.mxdj.top/)
+- [android 游戏下载](https://platinmods.com/)
+- [retropie 将gbc等类型游戏部署到Linux的网站](https://retropie.org.uk/)
+- [roms](https://www.romsgames.net/roms/)
+- [freegame](http://dan-ball.jp/en/)
+- [3ds 游戏下载](https://www.paopaoche.net/zhuji/3DS/)
+- [戴森球计划辅助](https://factoriolab.github.io/dsp/list?o=magnetic-coil*180&amp;o=circuit-board*180&amp;v=11)
+# 桌游
+- [bgg](https://boardgamegeek.com/forum/974620/bgg/design-contests)
+- [arkhamhorror](https://arkhamhorror.app/#/)
+- [arkhamdb](https://arkhamdb.com/)
+# 游戏开发
+- [sdl game learn](https://www.parallelrealities.co.uk/tutorials/#editor)
+
+## 游戏开发资源
+- [learn create Game Engine](https://github.com/netwarm007/GameEngineFromScratch)
+- [像素资源可爱](https://pixerelia.itch.io/)
+- [superpower asset](https://github.com/sparklinlabs/superpowers-asset-packs?tab=readme-ov-file)
+- [eagle free game assets](https://en.eagle.cool/blog/post/free-game-assets)
+- [像素资源网站](https://dotown.maeda-design-room.net/)
+- [easyx](https://easyx.cn/)
+
+## 游戏开发设计
+- [pre sence游戏设计网站](http://pre-sence.com/)
+- [a327ex blog](https://github.com/a327ex/blog?tab=readme-ov-file)
+- [noita细胞自动机杂谈](https://80.lv/articles/noita-a-game-based-on-falling-sand-simulation/)
+- [极乐迪斯科杂谈](https://www.vgbaike.com/disco_elysium/baike4927?wid=775)
+- [gdc](https://gdconf.com/)
+- [openStarbound](https://github.com/OpenStarbound/OpenStarbound)
+- [open source game](https://github.com/bobeff/open-source-games?tab=readme-ov-file#action-games)
+
+
+# 读书
+- [zlib](https://jnitaimei.allfree.me/)
+- [zlib 备份](https://www.yuque.com/xingyuexi-bchry/tvbox/ovnbhfwe3cvge1vb?singleDoc#)
+- [书格](https://www.shuge.org/)
+- [识典古籍](https://www.shidianguji.com/)
+- [学习折纸的书](https://origami.kosmulski.org/blog/2022-10-23-fujimoto-books-public-domain)
+  
+## 地图
+- [中国历史地图集](http://www.guoxue123.com/other/map/zgmap/index.htm)
+- [标准地图-现代](http://bzdt.ch.mnr.gov.cn/)
+- [数位方輿](https://digitalatlas.ascdc.sinica.edu.tw/)
+- [欧洲古代地图](https://www.davidrumsey.com/)
+
+&lt;!-- ##{'timestamp':1736393026}## --&gt;。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/HomePage.html</guid><pubDate>Thu, 09 Jan 2025 03:23:59 +0000</pubDate></item><item><title>创建Gmeek</title><link>https://inspired-boan.github.io/post/chuang-jian-Gmeek.html</link><description>[Gmeek](https://github.com/Meekdai/Gmeek) 一个博客框架，超轻量级个人博客模板，完全基于Github Pages 、 Github Issues 和 Github Actions，可以称作All in Github。</description><guid isPermaLink="true">https://inspired-boan.github.io/post/chuang-jian-Gmeek.html</guid><pubDate>Thu, 09 Jan 2025 02:04:35 +0000</pubDate></item></channel></rss>
