@@ -228,7 +228,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     }
     <span class="pl-c"><span class="pl-c">//</span> 创建目标表面（带透明度）</span>
     SDL_Surface* <span class="pl-k">final</span> = <span class="pl-c1">SDL_CreateRGBSurfaceWithFormat</span>(
-        <span class="pl-c1">0</span>, maxWidth, totalHeight, <span class="pl-c1">32</span>, SDL_PIXELFORMAT_RGBA32);
+        <span class="pl-c1">0</span>, maxWidth, totalHeight, <span class="pl-c1">32</span>, <span class="pl-c1">SDL_PIXELFORMAT_RGBA32</span>);
     <span class="pl-k">if</span> (<span class="pl-k">final</span> == <span class="pl-c1">nullptr</span>)
     {
         <span class="pl-k">for</span> (<span class="pl-k">auto</span> s : lineSurfaces) <span class="pl-c1">SDL_FreeSurface</span>(s);
@@ -258,7 +258,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c"><span class="pl-c">//</span> Texture</span>
     SDL_Texture *text_texture = <span class="pl-c1">SDL_CreateTextureFromSurface</span>(renderer, <span class="pl-k">final</span>);
     <span class="pl-c1">SDL_FreeSurface</span>(<span class="pl-k">final</span>);
-    <span class="pl-c1">SDL_RenderCopyEx</span>(renderer, text_texture, <span class="pl-c1">NULL</span>, &amp;bgDst, <span class="pl-c1">0</span>, <span class="pl-c1">NULL</span>, SDL_RendererFlip::SDL_FLIP_NONE);
+    <span class="pl-c1">SDL_RenderCopyEx</span>(renderer, text_texture, <span class="pl-c1">NULL</span>, &amp;bgDst, <span class="pl-c1">0</span>, <span class="pl-c1">NULL</span>, SDL_RendererFlip::<span class="pl-c1">SDL_FLIP_NONE</span>);
     <span class="pl-c1">SDL_DestroyTexture</span>(text_texture);
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>

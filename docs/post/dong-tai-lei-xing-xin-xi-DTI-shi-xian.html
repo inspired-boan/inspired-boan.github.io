@@ -99,41 +99,41 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 {
 <span class="pl-k">public:</span>
     <span class="pl-en">DTI</span>() = <span class="pl-k">default</span>;
-    <span class="pl-en">DTI</span>(<span class="pl-k">const</span> std::string &amp;name, DTI *parent)
+    <span class="pl-en">DTI</span>(<span class="pl-k">const</span> std::string &amp;name, <span class="pl-c1">DTI</span> *parent)
         : _name(name), _parent(parent) {};
     <span class="pl-en">~DTI</span>() = <span class="pl-k">default</span>;
 
     <span class="pl-c"><span class="pl-c">//</span>/ @brief 判断当前类是否是目标类型的子类</span>
     <span class="pl-c"><span class="pl-c">//</span>/ @param pType 目标类型</span>
     <span class="pl-c"><span class="pl-c">//</span>/ @return 是否是目标类型的子类</span>
-    <span class="pl-k">bool</span> <span class="pl-en">IsA</span>(DTI* pType);
+    <span class="pl-k">bool</span> <span class="pl-en">IsA</span>(<span class="pl-c1">DTI</span>* pType);
 
 <span class="pl-c"><span class="pl-c">//</span> getters and setters</span>
 <span class="pl-k">public:</span>
     <span class="pl-k">inline</span> <span class="pl-k">const</span> std::string &amp;<span class="pl-en">getName</span>() <span class="pl-k">const</span> { <span class="pl-k">return</span> <span class="pl-c1">this</span>-&gt;<span class="pl-smi">_name</span>; }
-    <span class="pl-k">inline</span> <span class="pl-k">const</span> DTI *<span class="pl-en">getParent</span>() <span class="pl-k">const</span> { <span class="pl-k">return</span> <span class="pl-c1">this</span>-&gt;<span class="pl-smi">_parent</span>; }
+    <span class="pl-k">inline</span> <span class="pl-k">const</span> <span class="pl-c1">DTI</span> *<span class="pl-en">getParent</span>() <span class="pl-k">const</span> { <span class="pl-k">return</span> <span class="pl-c1">this</span>-&gt;<span class="pl-smi">_parent</span>; }
 
     <span class="pl-k">inline</span> <span class="pl-k">void</span> <span class="pl-en">setName</span>(<span class="pl-k">const</span> std::string &amp;name) { <span class="pl-c1">this</span>-&gt;<span class="pl-smi">_name</span> = name; }
-    <span class="pl-k">inline</span> <span class="pl-k">void</span> <span class="pl-en">setParent</span>(DTI *parent) { <span class="pl-c1">this</span>-&gt;<span class="pl-smi">_parent</span> = parent; }
+    <span class="pl-k">inline</span> <span class="pl-k">void</span> <span class="pl-en">setParent</span>(<span class="pl-c1">DTI</span> *parent) { <span class="pl-c1">this</span>-&gt;<span class="pl-smi">_parent</span> = parent; }
 
 <span class="pl-k">private:</span>
     <span class="pl-c"><span class="pl-c">//</span>/ @brief 名称</span>
     std::string _name;
     <span class="pl-c"><span class="pl-c">//</span>/ @brief 父类信息</span>
-    DTI *_parent{<span class="pl-c1">nullptr</span>};
+    <span class="pl-c1">DTI</span> *_parent{<span class="pl-c1">nullptr</span>};
 };
 
 <span class="pl-c"><span class="pl-c">//</span>/ @brief 定义类型信息</span>
 #<span class="pl-k">define</span> <span class="pl-en">EXPORT_TYPE</span> \
 <span class="pl-k">public:</span>             \
-    <span class="pl-k">static</span> DTI Type;
+    <span class="pl-k">static</span> <span class="pl-c1">DTI</span> Type;
 
 <span class="pl-c"><span class="pl-c">//</span>///////////////////////////////////</span>
 <span class="pl-c"><span class="pl-c">//</span>CPP文件</span>
 
-<span class="pl-k">bool</span> <span class="pl-en">DTI::IsA</span>(DTI *pType)
+<span class="pl-k">bool</span> <span class="pl-en">DTI::IsA</span>(<span class="pl-c1">DTI</span> *pType)
 {
-    <span class="pl-k">const</span> DTI* current = <span class="pl-c1">this</span>;
+    <span class="pl-k">const</span> <span class="pl-c1">DTI</span>* current = <span class="pl-c1">this</span>;
     <span class="pl-k">while</span> (current != <span class="pl-c1">nullptr</span>)
     {
         <span class="pl-k">if</span>(current == pType)
@@ -149,7 +149,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-k">class</span> <span class="pl-en">CRootClass</span>
 {
-    EXPORT_TYPE
+    <span class="pl-c1">EXPORT_TYPE</span>
 <span class="pl-k">public:</span>
     <span class="pl-en">CRootClass</span>() = <span class="pl-k">default</span>;
     <span class="pl-en">~CRootClass</span>() = <span class="pl-k">default</span>;
@@ -157,14 +157,14 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-c"><span class="pl-c">//</span>/ @brief 安全的类型转换</span>
     <span class="pl-c"><span class="pl-c">//</span>/ @param pCastToType 目标类型</span>
     <span class="pl-c"><span class="pl-c">//</span>/ @return 转换后的指针，如果转换失败，返回nullptr</span>
-    <span class="pl-k">void</span>* <span class="pl-en">SafeCast</span>(DTI* pCastToType);
+    <span class="pl-k">void</span>* <span class="pl-en">SafeCast</span>(<span class="pl-c1">DTI</span>* pCastToType);
 
     <span class="pl-c"><span class="pl-c">//</span>/ @brief 名称 用于SafeCast示例</span>
     std::string name{<span class="pl-s"><span class="pl-pds">"</span>CRootClass<span class="pl-pds">"</span></span>};
 };
 
-DTI CRootClass::Type{<span class="pl-s"><span class="pl-pds">"</span>CRootClass<span class="pl-pds">"</span></span>, <span class="pl-c1">nullptr</span>};
-<span class="pl-k">void</span> *<span class="pl-en">CRootClass::SafeCast</span>(DTI *pCastToType)
+<span class="pl-c1">DTI</span> CRootClass::Type{<span class="pl-s"><span class="pl-pds">"</span>CRootClass<span class="pl-pds">"</span></span>, <span class="pl-c1">nullptr</span>};
+<span class="pl-k">void</span> *<span class="pl-en">CRootClass::SafeCast</span>(<span class="pl-c1">DTI</span> *pCastToType)
 {
     <span class="pl-k">if</span> (<span class="pl-c1">this</span>-&gt;<span class="pl-smi">Type</span>.<span class="pl-c1">IsA</span>(pCastToType))
         <span class="pl-k">return</span> <span class="pl-c1">this</span>;
@@ -173,7 +173,7 @@ DTI CRootClass::Type{<span class="pl-s"><span class="pl-pds">"</span>CRootClass<
 
 <span class="pl-k">class</span> <span class="pl-en">CChildClass</span> : <span class="pl-k">public</span> <span class="pl-en">CRootClass</span>
 {
-    EXPORT_TYPE
+    <span class="pl-c1">EXPORT_TYPE</span>
 <span class="pl-k">public:</span>
     <span class="pl-en">CChildClass</span>() = <span class="pl-k">default</span>;
     <span class="pl-en">~CChildClass</span>() = <span class="pl-k">default</span>;
@@ -182,7 +182,7 @@ DTI CRootClass::Type{<span class="pl-s"><span class="pl-pds">"</span>CRootClass<
     std::string name{<span class="pl-s"><span class="pl-pds">"</span>CChildClass<span class="pl-pds">"</span></span>};
 };
 
-DTI CChildClass::Type{<span class="pl-s"><span class="pl-pds">"</span>CChildClass<span class="pl-pds">"</span></span>, &amp;CRootClass::Type};
+<span class="pl-c1">DTI</span> CChildClass::Type{<span class="pl-s"><span class="pl-pds">"</span>CChildClass<span class="pl-pds">"</span></span>, &amp;CRootClass::Type};
 
 <span class="pl-k">int</span> <span class="pl-en">main</span>()
 {
